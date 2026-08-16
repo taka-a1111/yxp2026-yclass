@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- BUILD_TAG: yxp2026_yclass_ver1.0w / 2026-08-16 -->
+<!-- BUILD_TAG: yxp2026_yclass_ver1.1w / 2026-08-16 -->
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
@@ -196,6 +196,14 @@ footer{background:var(--navy);color:#fff;padding:34px 0 84px;}
 .sticky-cta a{flex:1 1 0;max-width:280px;text-align:center;text-decoration:none;font-weight:800;font-size:14px;padding:11px 8px;border-radius:6px;}
 .s-mail{background:var(--orange);color:#fff;}
 .s-zoom{background:#fff;color:var(--navy);}
+
+/* ===== 印刷 ===== */
+@media print{
+  .sticky-cta,.nav-btn{display:none!important;}
+  .hd{position:static;}
+  footer{padding-bottom:34px;}
+  section{padding:40px 0;}
+}
 </style>
 </head>
 <body>
