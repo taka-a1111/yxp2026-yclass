@@ -50,6 +50,7 @@ CSS40 = """
   .cb-hours{grid-column:2;margin-bottom:10px;}
   .cb-mail{grid-column:2;padding-top:6px;}
 }
+.cbanner-note{margin:10px 0 0;text-align:center;font-size:clamp(13.5px,1.6vw,15px);font-weight:700;}
 @media print{.cbanner{break-inside:avoid;}}
 /* ===== 11月バナー修正：ここまで ===== */
 </style>"""
@@ -64,6 +65,7 @@ def banner40():
         <span class="cb-label">電話</span><a class="cb-tel" href="tel:050-3538-7006">050-3538-7006</a><span class="cb-hours">平日10時から16時まで</span>
         <span class="cb-label">メール</span><a class="cb-mail" href="mailto:{MAIL}"><img src="data:image/png;base64,{b64}" width="{mw//2}" height="{mh//2}" alt="{MAIL}"></a>
       </div>
+      <p class="cbanner-note">開封後6時間以内に返信いたします</p>
     </div>"""
 
 # トップ：画像（スライドショー）の直下
@@ -89,7 +91,9 @@ y = rep(y, '<span class="yx-c-hours">月曜〜金曜／10時〜15時</span>',
         '<span class="yx-c-hours">平日10時から16時まで</span>', 4)
 y = rep(y, '<a class="yx-c-tel" href="tel:05035386117">０５０　３５３８　６１１７</a>',
         '<a class="yx-c-tel" href="tel:05035386117">050-3538-6117</a>', 4)
+y = rep(y, '<span class="yx-c-hours">24時間365日</span>\n      </div>\n    </div>',
+        '<span class="yx-c-hours">24時間365日</span>\n      </div>\n      <p class="yx-c-note">開封後6時間以内に返信いたします</p>\n    </div>', 4)
 y = rep(y, "/* ===== 10月修正：ここまで ===== */\n</style>",
-        "/* ===== 10月修正：ここまで ===== */\n/* ===== 11月バナー修正：ここから ===== */\n@media(max-width:640px){.yx-contact{padding:16px 14px;}.yx-contact-ttl{font-size:clamp(12.5px,4vw,15px);}}\n/* ===== 11月バナー修正：ここまで ===== */\n</style>", 1)
+        "/* ===== 10月修正：ここまで ===== */\n/* ===== 11月バナー修正：ここから ===== */\n.yx-c-note{margin:12px 0 0;text-align:center;font-size:clamp(13.5px,1.6vw,16px);font-weight:700;}\n@media(max-width:640px){.yx-contact{padding:16px 14px;}.yx-contact-ttl{font-size:clamp(12.5px,4vw,15px);}}\n/* ===== 11月バナー修正：ここまで ===== */\n</style>", 1)
 (out / "yxp" / "index.html").write_text(y, encoding="utf8")
 print("ok", mw, mh)
