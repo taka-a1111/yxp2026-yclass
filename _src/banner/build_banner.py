@@ -7,7 +7,7 @@ from PIL import Image, ImageDraw, ImageFont
 src40, srcyc, out = sys.argv[1], sys.argv[2], pathlib.Path(sys.argv[3])
 (out / "swo" / "images").mkdir(parents=True, exist_ok=True)
 (out / "yxp" / "images").mkdir(parents=True, exist_ok=True)
-DATE = "2026-11-21"
+DATE = "2026-11-22"
 
 def rep(s, a, b, n):
     c = s.count(a)
@@ -28,10 +28,10 @@ def mail_png(text, color, path):
 # ================= SWO 40venue =================
 s = open(src40, encoding="utf8").read()
 s = rep(s, "<!-- BUILD_TAG: swo2026_40venue_ver5.5wB / 2026-08-18 -->",
-        f"<!-- BUILD_TAG: swo2026_40venue_banner_ver1.0 / {DATE} -->", 1)
-MAIL = "web-team@science-web.online"
-mw, mh = mail_png(MAIL, (15, 98, 180, 255), out / "swo" / "images" / "mail-web-team.png")
-b64 = base64.b64encode((out / "swo" / "images" / "mail-web-team.png").read_bytes()).decode()
+        f"<!-- BUILD_TAG: swo2026_40venue_banner_ver1.1 / {DATE} -->", 1)
+MAIL = "swo-team@science-web.online"
+mw, mh = mail_png(MAIL, (15, 98, 180, 255), out / "swo" / "images" / "mail-swo-team.png")
+b64 = base64.b64encode((out / "swo" / "images" / "mail-swo-team.png").read_bytes()).decode()
 
 CSS40 = """
 /* ===== 11月バナー修正：ここから ===== */
@@ -62,7 +62,7 @@ def banner40():
     <div class="cbanner" role="group" aria-label="お問合せ">
       <p class="cbanner-ttl">お問合せは</p>
       <div class="cbanner-grid">
-        <span class="cb-label">電話</span><a class="cb-tel" href="tel:050-3538-7006">050-3538-7006</a><span class="cb-hours">平日10時から16時まで</span>
+        <span class="cb-label">電話</span><a class="cb-tel" href="tel:050-3538-7006">050-3538-7006</a><span class="cb-hours">平日10時〜15時</span>
         <span class="cb-label">メール</span><a class="cb-mail" href="mailto:{MAIL}"><img src="data:image/png;base64,{b64}" width="{mw//2}" height="{mh//2}" alt="{MAIL}"></a>
       </div>
       <p class="cbanner-note">開封後6時間以内に返信いたします</p>
@@ -83,12 +83,12 @@ s = s[:i0] + seg + s[i1:]
 # ================= YXP yclass =================
 y = open(srcyc, encoding="utf8").read()
 y = rep(y, "<!-- BUILD_TAG: yxp2026_yclass_oct_ver1.0 / 2026-11-10 -->",
-        f"<!-- BUILD_TAG: yxp2026_yclass_banner_ver1.0 / {DATE} -->", 1)
+        f"<!-- BUILD_TAG: yxp2026_yclass_banner_ver1.1 / {DATE} -->", 1)
 # 連絡先の枠（ページ内4か所・同じ部品）を罫線で囲んだバナーにする
 y = rep(y, ".yx-contact{margin-top:44px;border-top:3px solid #0070C0;padding-top:22px;}",
         ".yx-contact{margin-top:44px;border:2px solid #0070C0;border-radius:8px;background:#EEF6FC;padding:20px 22px;}", 1)
 y = rep(y, '<span class="yx-c-hours">月曜〜金曜／10時〜15時</span>',
-        '<span class="yx-c-hours">平日10時から16時まで</span>', 4)
+        '<span class="yx-c-hours">平日10時〜15時</span>', 4)
 y = rep(y, '<a class="yx-c-tel" href="tel:05035386117">０５０　３５３８　６１１７</a>',
         '<a class="yx-c-tel" href="tel:05035386117">050-3538-6117</a>', 4)
 y = rep(y, '<span class="yx-c-hours">24時間365日</span>\n      </div>\n    </div>',
